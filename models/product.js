@@ -23,10 +23,11 @@ const getProductsFromFile = async () => {
 };
 
 module.exports = class Product {
-  constructor(t) {
+  constructor(t, img) {
     this.title = t;
+    this.image = img;
     this.price = Math.floor(Math.random() * 90) + 10;
-    this.desc = "A very nice" + this.title;
+    this.desc = "A very nice " + this.title;
   }
 
   async save() {

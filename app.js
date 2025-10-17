@@ -7,8 +7,19 @@ const errorController = require("./controllers/error");
 
 const app = express();
 
+const multer = require("multer");
+const file_utils = require("./utils/file_utils");
+
 app.set("view engine", "ejs");
 app.set("views", "views");
+
+app.use(
+  multer({
+    storage: file_utils.fileStorage,
+    fileFilter: file_utils.fileFilter,
+  }).single("image")
+);
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
